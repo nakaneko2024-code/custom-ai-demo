@@ -1,0 +1,8 @@
+{
+  "routes": [
+    { "src": "/kotori", "dest": "/kotori.html" },
+    { "src": "/manabi", "dest": "/manabi.html" },
+    { "src": "/annai",  "dest": "/annai.html" },
+    { "src": "/sensei", "dest": "/sensei.html" }
+  ]
+}
