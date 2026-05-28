@@ -42,12 +42,28 @@
   <div class="end-screen" id="end-screen">
     <div class="end-title">🐦 ことりAIはあなたのコミュニティにも作れます</div>
     <p class="end-text">背中を押してくれるAIで、メンバーの一歩をサポートしませんか？</p>
-    <a class="share-btn" href="https://twitter.com/intent/tweet?text=%E3%81%93%E3%81%A8%E3%82%8AAI%E4%BD%93%E9%A8%93%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%81%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0AI%E3%81%A3%E3%81%A6%E3%81%93%E3%82%93%E3%81%AA%E6%84%9F%E3%81%98%E3%81%A7%E4%BD%9C%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A0" target="_blank">𝕏 でシェアする</a>
-    <a class="inquiry-btn" href="#" target="_blank">詳しく聞いてみる</a>
+    <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
+    <button class="share-btn" onclick="copyInstagram()">📸 InstagramのURLをコピーする</button>
+    <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>
+    <a class="inquiry-btn" href="https://www.instagram.com/nakaneko123/" target="_blank" onclick="showDmBubble(event)">詳しく聞いてみる</a>
   </div>
 
   <script src="./app.js"></script>
   <script>
+    function copyInstagram() {
+      navigator.clipboard.writeText('https://www.instagram.com/nakaneko123/');
+      const toast = document.getElementById('copy-toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+    function showDmBubble(e) {
+      e.preventDefault();
+      const bubble = document.getElementById('dm-bubble');
+      bubble.classList.add('show');
+      setTimeout(() => {
+        window.location.href = 'https://www.instagram.com/nakaneko123/';
+      }, 1000);
+    }
     const engine = new DemoEngine([
       { type: 'user', text: '何から始めたらいいかわからない', tip: 'ここをタップしてみて' },
       { type: 'ai',   text: 'まずは、過去に人にして喜ばれたことで自分では自然に動いた行動は何？ノートに書いてみよう' },
