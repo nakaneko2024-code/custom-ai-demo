@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>とびらAI — コンテンツ開放体験デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--c1:#6a9e78;--c2:#3d6b4f;--gold:#c9a870;--cream:#f5ede0;--dark:#1a3020}
+body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 16px 40px}
+.header{text-align:center;color:#fff;margin-bottom:20px}
+#day-count{font-family:'DM Serif Display',serif;font-size:48px;font-weight:400;display:block;line-height:1;letter-spacing:.05em}
+.day-label{font-size:12px;opacity:.75;display:block;margin-top:4px}
+.header-title{font-size:13px;margin-top:6px;opacity:.9}
+.story-card{background:#fff;border-radius:16px;padding:20px;max-width:340px;width:100%;margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.ai-name{font-family:'DM Serif Display',serif;font-size:22px;color:var(--dark);margin-bottom:6px}
+.ai-type{font-size:11px;background:#e8f4eb;color:var(--c2);padding:2px 10px;border-radius:10px;display:inline-block;margin-bottom:12px;font-weight:700}
+.pain-box{background:#f0f8f2;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.pain-label{font-size:11px;font-weight:700;color:var(--c2);margin-bottom:6px;display:block}
+.pain-item{font-size:12px;color:#555;line-height:1.7;display:block;padding-left:12px;position:relative}
+.pain-item::before{content:"・";position:absolute;left:0;color:var(--c1)}
+.want-box{background:rgba(106,158,120,.08);border-radius:10px;padding:10px 12px;margin-bottom:4px;border-left:3px solid var(--c1)}
+.want-label{font-size:11px;font-weight:700;color:var(--c1);margin-bottom:4px;display:block}
+.want-text{font-size:12px;color:#444;line-height:1.6}
+.start-btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;margin-top:14px;font-family:'Noto Serif JP',serif;letter-spacing:.05em}
+.phone-wrapper{display:none;flex-direction:column;align-items:center;gap:14px}
+.phone-wrapper.visible{display:flex}
+.phone-frame{width:300px;height:520px;border:8px solid #1a1a1a;border-radius:40px;overflow:hidden;background:var(--cream);box-shadow:0 20px 60px rgba(0,0,0,.4);display:flex;flex-direction:column}
+.phone-notch{width:90px;height:22px;background:#1a1a1a;border-radius:0 0 14px 14px;margin:0 auto;flex-shrink:0}
+.chat-header-bar{background:#fff;padding:8px 12px;font-size:12px;font-weight:700;color:#333;border-bottom:1px solid #e5e5e5;flex-shrink:0;font-family:'Noto Serif JP',serif}
+.phone-content{flex:1;overflow-y:auto;padding:10px}
+.lock-intro{font-size:11px;color:#555;margin-bottom:10px;line-height:1.7;padding:9px 11px;background:#fff;border-radius:10px;border-left:3px solid var(--gold)}
+.lock-item{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:10px;margin-bottom:6px;background:#ede5d8;border:1.5px solid #ddd4c4;transition:all .4s}
+.lock-item.unlocked{background:linear-gradient(135deg,var(--c1),var(--c2));border-color:transparent}
+.lock-item.pulse{animation:pulse .4s ease}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
+.lk-icon{font-size:15px;flex-shrink:0;min-width:20px;text-align:center}
+.lk-info{flex:1}
+.lk-type{font-size:9px;color:#999;font-weight:700;letter-spacing:.05em}
+.lock-item.unlocked .lk-type{color:rgba(255,255,255,.7)}
+.lk-title{font-size:11px;font-weight:700;color:#333;margin-top:1px}
+.lock-item.unlocked .lk-title{color:#fff}
+.lk-badge{font-size:9px;padding:2px 6px;border-radius:6px;background:#d4cac0;color:#888;font-weight:700;flex-shrink:0;white-space:nowrap}
+.lock-item.unlocked .lk-badge{background:rgba(255,255,255,.25);color:#fff}
+.unlock-msg{font-size:11px;color:var(--c2);background:#e8f4eb;padding:7px 10px;border-radius:8px;margin-bottom:6px;font-weight:600;opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s}
+.unlock-msg.shown{opacity:1;transform:translateY(0)}
+.progress-dots{display:flex;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s}
+.dot.active{background:#fff}
+.next-btn{padding:12px 32px;background:#fff;color:var(--c2);border:2px solid var(--c2);border-radius:24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Serif JP',serif}
+.end-screen{display:none;background:#fff;border-radius:16px;padding:24px 20px;max-width:340px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.end-screen.visible{display:block}
+.end-title{font-family:'DM Serif Display',serif;font-size:19px;color:#222;margin-bottom:8px;line-height:1.5}
+.end-text{font-size:13px;color:#666;margin-bottom:20px;line-height:1.7}
+.copy-toast{display:none;background:#333;color:#fff;font-size:13px;padding:8px 16px;border-radius:20px;margin-bottom:10px}
+.copy-toast.show{display:block}
+.dm-bubble{display:none;background:#e8f4eb;color:var(--c2);font-size:15px;font-weight:700;padding:12px 20px;border-radius:16px 16px 4px 16px;margin-bottom:10px;animation:popIn .3s ease}
+.dm-bubble.show{display:block}
+@keyframes popIn{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
+.share-btn{display:block;width:100%;padding:12px;background:#1da1f2;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px;font-family:'Noto Serif JP',serif}
+.inquiry-btn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Serif JP',serif;text-decoration:none}
+.ig-footer{margin-top:24px;text-align:center}
+.ig-icon-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:12px 24px;border-radius:24px;text-decoration:none;font-size:14px;font-weight:700;font-family:'Noto Serif JP',serif;box-shadow:0 4px 16px rgba(188,24,136,.3)}
+.ig-icon-btn svg{width:18px;height:18px;fill:#fff}
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <span id="day-count">Day --</span>
+    <span class="day-label">2026年3月17日 スタート</span>
+    <p class="header-title">Claude Codeで毎日AIを触っています</p>
+  </header>
+
+  <div class="story-card" id="story-card">
+    <div class="ai-name">🗝️ とびらAI</div>
+    <span class="ai-type">コンテンツ開放系</span>
+    <div class="pain-box">
+      <span class="pain-label">📌 こんなお悩みありませんか？</span>
+      <span class="pain-item">「コンテンツが多すぎてどこから始めれば…」</span>
+      <span class="pain-item">「続けられるか不安」</span>
+    </div>
+    <div class="want-box">
+      <span class="want-label">✨ こんな叶えたいがある方に！</span>
+      <span class="want-text">ステップ順に「次の扉」が開いて、自然に進めます</span>
+    </div>
+    <button class="start-btn" onclick="trackClick('tobira_start');startDemo()">▶ 体験してみる</button>
+  </div>
+
+  <div id="phone-wrapper" class="phone-wrapper">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="chat-header-bar">🗝️ とびらAI｜ブルームラボ</div>
+      <div class="phone-content">
+        <div class="lock-intro">「入会ありがとうございます！<br>ステップ順に扉を開けていきましょう🗝️」</div>
+        <div class="lock-item" id="item1">
+          <span class="lk-icon" id="icon1">🔒</span>
+          <div class="lk-info">
+            <div class="lk-type">動画</div>
+            <div class="lk-title">Lesson 1「はじめの一歩」</div>
+          </div>
+          <span class="lk-badge" id="badge1">会員限定</span>
+        </div>
+        <div class="lock-item" id="item2">
+          <span class="lk-icon" id="icon2">🔒</span>
+          <div class="lk-info">
+            <div class="lk-type">動画</div>
+            <div class="lk-title">Lesson 2「コア価値を見つける」</div>
+          </div>
+          <span class="lk-badge" id="badge2">会員限定</span>
+        </div>
+        <div class="lock-item" id="item3">
+          <span class="lk-icon" id="icon3">🔒</span>
+          <div class="lk-info">
+            <div class="lk-type">音声</div>
+            <div class="lk-title">Bonus「特別コーチング」</div>
+          </div>
+          <span class="lk-badge" id="badge3">会員限定</span>
+        </div>
+        <div class="lock-item" id="item4">
+          <span class="lk-icon" id="icon4">🔒</span>
+          <div class="lk-info">
+            <div class="lk-type">コミュニティ</div>
+            <div class="lk-title">メンバー専用スペース</div>
+          </div>
+          <span class="lk-badge" id="badge4">会員限定</span>
+        </div>
+        <div class="unlock-msg" id="umsg">✨ 次のコンテンツが解放されました！</div>
+      </div>
+    </div>
+    <div class="progress-dots">
+      <div class="dot active" id="dot0"></div>
+      <div class="dot" id="dot1"></div>
+      <div class="dot" id="dot2"></div>
+      <div class="dot" id="dot3"></div>
+      <div class="dot" id="dot4"></div>
+    </div>
+    <button class="next-btn" id="next-btn" onclick="trackClick('tobira_next');nextStep()">入会してみる ▶</button>
+  </div>
+
+  <div class="end-screen" id="end-screen">
+    <div class="end-title">🗝️ とびらAIは<br>あなたにも作れます</div>
+    <p class="end-text">「迷わずスタートできた！」コンテンツを段階的に開放するAIで、メンバーの学習継続を後押ししませんか？</p>
+    <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
+    <button class="share-btn" onclick="trackClick('tobira_copy');copyPageUrl()">🔗 このページのURLをコピーする</button>
+    <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>
+    <a class="inquiry-btn" href="https://www.instagram.com/nakaneko123/" target="_blank" onclick="trackClick('tobira_dm');showDmBubble(event)">DMして詳しく聞いてみる</a>
+  </div>
+
+  <div class="ig-footer">
+    <a class="ig-icon-btn" href="https://www.instagram.com/nakaneko123/" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </div>
+
+  <script>
+    (function(){
+      var s=new Date('2026-03-17T00:00:00+09:00'),t=new Date();
+      t.setHours(0,0,0,0);
+      document.getElementById('day-count').textContent='Day '+(Math.floor((t-s)/86400000)+1);
+    })();
+
+    function trackClick(name){
+      if(typeof gtag!=='undefined') gtag('event','click',{event_category:'button',event_label:name});
+    }
+
+    var step=0;
+    var unlockSteps=[[1],[2],[3,4]];
+
+    function startDemo(){
+      document.getElementById('story-card').style.display='none';
+      document.getElementById('phone-wrapper').classList.add('visible');
+    }
+
+    function unlockItem(n){
+      var el=document.getElementById('item'+n);
+      el.classList.add('pulse');
+      setTimeout(function(){
+        el.classList.remove('pulse');
+        el.classList.add('unlocked');
+        document.getElementById('icon'+n).textContent='✅';
+        document.getElementById('badge'+n).textContent='開放！';
+      },200);
+    }
+
+    function nextStep(){
+      var btn=document.getElementById('next-btn');
+      if(step<unlockSteps.length){
+        unlockSteps[step].forEach(function(n){unlockItem(n);});
+        step++;
+        document.getElementById('dot'+step).classList.add('active');
+        var umsg=document.getElementById('umsg');
+        umsg.classList.add('shown');
+        setTimeout(function(){umsg.classList.remove('shown');},1800);
+        btn.textContent = step===unlockSteps.length ? 'すべて解放！▶' : '次へ ▶';
+      } else {
+        document.getElementById('phone-wrapper').style.display='none';
+        document.getElementById('end-screen').classList.add('visible');
+      }
+    }
+
+    function copyPageUrl(){
+      navigator.clipboard.writeText(window.location.href);
+      var t=document.getElementById('copy-toast');t.classList.add('show');
+      setTimeout(function(){t.classList.remove('show');},2500);
+    }
+    function showDmBubble(e){
+      e.preventDefault();
+      document.getElementById('dm-bubble').classList.add('show');
+      setTimeout(function(){window.location.href='https://www.instagram.com/nakaneko123/';},1000);
+    }
+  </script>
+</body>
+</html>

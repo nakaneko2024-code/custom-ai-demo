@@ -1,8 +1,12 @@
 {
   "routes": [
-    { "src": "/kotori", "dest": "/kotori.html" },
-    { "src": "/manabi", "dest": "/manabi.html" },
-    { "src": "/annai",  "dest": "/annai.html" },
-    { "src": "/sensei", "dest": "/sensei.html" }
+    { "src": "/kotori",    "dest": "/kotori.html" },
+    { "src": "/manabi",    "dest": "/manabi.html" },
+    { "src": "/annai",     "dest": "/annai.html" },
+    { "src": "/sensei",    "dest": "/sensei.html" },
+    { "src": "/koe",       "dest": "/koe.html" },
+    { "src": "/tobira",    "dest": "/tobira.html" },
+    { "src": "/michibiki", "dest": "/michibiki.html" },
+    { "src": "/mitsuke",   "dest": "/mitsuke.html" }
   ]
 }
