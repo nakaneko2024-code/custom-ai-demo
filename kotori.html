@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ことりAI — コーチング体験デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <header class="header">
+    <span id="day-count">Day --</span>
+    <span class="day-label">2026年3月17日 スタート</span>
+    <p class="header-title">Claude Codeで毎日AIを触っています</p>
+  </header>
+
+  <div class="story-card" id="story-card">
+    <div class="ai-name">🐦 ことりAI</div>
+    <span class="ai-type">コーチング系</span>
+    <p class="story-text">起業したいけど、何から始めたらいいかわからないBさん。やりたい気持ちはあるのに一歩が出なくて……そんなBさんを、ことりAIが優しく背中を押します。</p>
+    <button class="start-btn" onclick="engine.start()">▶ 体験してみる</button>
+  </div>
+
+  <div id="phone-wrapper" class="phone-wrapper">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="chat-header-bar">🐦 ことりAI</div>
+      <div id="chat-screen" class="chat-screen"></div>
+    </div>
+    <div class="progress-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <button class="next-btn" id="next-btn" onclick="engine.next()">次へ ▶</button>
+  </div>
+
+  <div class="end-screen" id="end-screen">
+    <div class="end-title">🐦 ことりAIはあなたのコミュニティにも作れます</div>
+    <p class="end-text">背中を押してくれるAIで、メンバーの一歩をサポートしませんか？</p>
+    <a class="share-btn" href="https://twitter.com/intent/tweet?text=%E3%81%93%E3%81%A8%E3%82%8AAI%E4%BD%93%E9%A8%93%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%81%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0AI%E3%81%A3%E3%81%A6%E3%81%93%E3%82%93%E3%81%AA%E6%84%9F%E3%81%98%E3%81%A7%E4%BD%9C%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A0" target="_blank">𝕏 でシェアする</a>
+    <a class="inquiry-btn" href="#" target="_blank">詳しく聞いてみる</a>
+  </div>
+
+  <script src="./app.js"></script>
+  <script>
+    const engine = new DemoEngine([
+      { type: 'user', text: '何から始めたらいいかわからない', tip: 'ここをタップしてみて' },
+      { type: 'ai',   text: 'まずは、過去に人にして喜ばれたことで自分では自然に動いた行動は何？ノートに書いてみよう' },
+      { type: 'user', text: '失敗したらどうしよう…' },
+      { type: 'ai',   text: '失敗も実績になるよ。やってみた人だけ見える景色がある' },
+      { type: 'end' }
+    ]);
+  </script>
+</body>
+</html>

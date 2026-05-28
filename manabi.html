@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まなびAI — 講座Q&amp;A体験デモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <header class="header">
+    <span id="day-count">Day --</span>
+    <span class="day-label">2026年3月17日 スタート</span>
+    <p class="header-title">Claude Codeで毎日AIを触っています</p>
+  </header>
+
+  <div class="story-card" id="story-card">
+    <div class="ai-name">📚 まなびAI</div>
+    <span class="ai-type">講座Q&amp;A系</span>
+    <p class="story-text">育児中で忙しいAさん。受講中のコースでわからないことが出てきたけど、質問しにくくて……そんなAさんをまなびAIがいつでもサポートします。</p>
+    <button class="start-btn" onclick="engine.start()">▶ 体験してみる</button>
+  </div>
+
+  <div id="phone-wrapper" class="phone-wrapper">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="chat-header-bar">📚 まなびAI</div>
+      <div id="chat-screen" class="chat-screen"></div>
+    </div>
+    <div class="progress-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <button class="next-btn" id="next-btn" onclick="engine.next()">次へ ▶</button>
+  </div>
+
+  <div class="end-screen" id="end-screen">
+    <div class="end-title">📚 まなびAIはあなたのコミュニティにも作れます</div>
+    <p class="end-text">受講生の「これどういう意味？」にいつでも答えるAIで、学習サポートを強化しませんか？</p>
+    <a class="share-btn" href="https://twitter.com/intent/tweet?text=%E3%81%BE%E3%81%AA%E3%81%B3AI%E4%BD%93%E9%A8%93%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%81%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0AI%E3%81%A3%E3%81%A6%E3%81%93%E3%82%93%E3%81%AA%E6%84%9F%E3%81%98%E3%81%A7%E4%BD%9C%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A0" target="_blank">𝕏 でシェアする</a>
+    <a class="inquiry-btn" href="#" target="_blank">詳しく聞いてみる</a>
+  </div>
+
+  <script src="./app.js"></script>
+  <script>
+    const engine = new DemoEngine([
+      { type: 'user', text: '講座のアーカイブはどこ？', tip: 'ここをタップしてみて' },
+      { type: 'ai',   text: '内容の絞り込み・未視聴はこちら👉' },
+      { type: 'user', text: '見た後はどうすればいい？' },
+      { type: 'ai',   text: 'アーカイブのアウトプットコメントを入れて仲間や講師にシェアしよう！' },
+      { type: 'end' }
+    ]);
+  </script>
+</body>
+</html>
