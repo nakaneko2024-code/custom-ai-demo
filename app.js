@@ -59,11 +59,17 @@ class DemoEngine {
       requestAnimationFrame(() => row.classList.add('shown'));
     });
 
-    // 誘導チップ
+    // 誘導チップ（タップで次へ進める）
     if (step.tip) {
+      // 古いチップを削除
+      const oldTips = this.chatScreen.querySelectorAll('.guide-tip');
+      oldTips.forEach(t => t.remove());
+
       const tip = document.createElement('div');
       tip.className = 'guide-tip';
       tip.textContent = '👆 ' + step.tip;
+      tip.style.cursor = 'pointer';
+      tip.addEventListener('click', () => this.next());
       this.chatScreen.appendChild(tip);
       requestAnimationFrame(() => {
         requestAnimationFrame(() => tip.classList.add('shown'));

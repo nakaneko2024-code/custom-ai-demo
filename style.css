@@ -253,6 +253,12 @@ body {
 .guide-tip.shown {
   opacity: 1;
   transform: translateY(0);
+  cursor: pointer;
+}
+
+.guide-tip.shown:active {
+  transform: scale(0.96);
+  opacity: 0.8;
 }
 
 /* ── プログレスドット ── */
