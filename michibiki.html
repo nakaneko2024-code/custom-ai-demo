@@ -52,10 +52,18 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 .lp-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:4px}
 .lp-date{font-size:10px;color:rgba(255,255,255,.85);background:rgba(255,255,255,.15);display:inline-block;padding:3px 10px;border-radius:10px;margin-top:3px}
 
+/* タブヒント */
+.tab-hint-bar{background:rgba(200,121,65,.12);padding:5px 10px;text-align:center;font-size:10px;font-weight:700;color:var(--c1);display:flex;align-items:center;justify-content:center;gap:5px;flex-shrink:0;transition:opacity .3s}
+.tab-hint-bar.hidden{display:none}
+.tab-finger{font-size:15px;display:inline-block;animation:fingerTap .65s ease-in-out infinite}
+@keyframes fingerTap{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
 /* タブ */
 .tab-bar{display:flex;background:#fff;border-bottom:1px solid #e8ddd0;flex-shrink:0}
 .tab-btn{flex:1;padding:8px 4px;font-size:10px;font-weight:700;color:#aaa;border:none;background:none;cursor:pointer;font-family:'Noto Serif JP',serif;border-bottom:2px solid transparent;transition:all .2s}
 .tab-btn.active{color:var(--c2);border-bottom-color:var(--c2)}
+.tab-btn.tab-glow{animation:tabGlow 1.4s ease-in-out infinite}
+@keyframes tabGlow{0%,100%{background:transparent}50%{background:rgba(200,121,65,.1)}}
 
 /* タブコンテンツ */
 .tab-panel{display:none;padding:12px;flex:1}
@@ -131,10 +139,14 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
           <div class="lp-title">軽井沢 合宿 2026</div>
           <div class="lp-date">2027年5月1日(木)〜2日(金)</div>
         </div>
+        <div class="tab-hint-bar" id="tab-hint-bar">
+          <span class="tab-finger">👇</span>
+          <span>3つのタブをタップして確認！</span>
+        </div>
         <div class="tab-bar">
-          <button class="tab-btn active" onclick="switchTab('concept',this)">コンセプト</button>
-          <button class="tab-btn" onclick="switchTab('program',this)">プログラム</button>
-          <button class="tab-btn" onclick="switchTab('voice',this)">参加者の声</button>
+          <button class="tab-btn active tab-glow" onclick="switchTab('concept',this)">コンセプト</button>
+          <button class="tab-btn tab-glow" onclick="switchTab('program',this)">プログラム</button>
+          <button class="tab-btn tab-glow" onclick="switchTab('voice',this)">参加者の声</button>
         </div>
         <div class="tab-panel active" id="tab-concept">
           <div class="lp-card">
@@ -227,7 +239,13 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
     }
 
     function switchTab(tab, btn){
-      document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+      // ヒントとglowを消す
+      var hint=document.getElementById('tab-hint-bar');
+      if(hint) hint.classList.add('hidden');
+      document.querySelectorAll('.tab-btn').forEach(function(b){
+        b.classList.remove('active');
+        b.classList.remove('tab-glow');
+      });
       document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
       btn.classList.add('active');
       document.getElementById('tab-'+tab).classList.add('active');
