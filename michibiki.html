@@ -19,7 +19,9 @@
 :root{--c1:#c87941;--c2:#9a5832;--cream:#fdf5ee;--dark:#3a1a0a}
 body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 16px 40px}
 .header{text-align:center;color:#fff;margin-bottom:20px}
-#day-count{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;display:block;line-height:1;letter-spacing:.03em}
+.header-day-row{display:flex;align-items:center;justify-content:center;gap:10px}
+.header-icon{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.7);flex-shrink:0}
+#day-count{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;line-height:1;letter-spacing:.03em}
 .day-label{font-size:12px;opacity:.75;display:block;margin-top:4px}
 .header-title{font-size:13px;margin-top:6px;opacity:.9}
 .story-card{background:#fff;border-radius:16px;padding:20px;max-width:340px;width:100%;margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,.15)}
@@ -96,7 +98,10 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 <body>
 
   <header class="header">
-    <span id="day-count">Day --</span>
+    <div class="header-day-row">
+      <img class="header-icon" src="./naka-profile.png" alt="">
+      <span id="day-count">Day --</span>
+    </div>
     <span class="day-label">2026年3月17日 スタート</span>
     <p class="header-title">Claude Codeで毎日AIを触っています</p>
   </header>
@@ -122,12 +127,6 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
       <div class="chat-header-bar">✨ みちびきAI｜軽井沢合宿2026</div>
       <div class="phone-content">
         <div class="lp-hero">
-          <div class="lp-host">
-            <div class="lp-host-icon">
-              <img src="./naka-profile.png" alt="主催者">
-            </div>
-            <span class="lp-host-label">主催</span>
-          </div>
           <div class="lp-event-label">SKIP F × VILLA STAY</div>
           <div class="lp-title">軽井沢 合宿 2026</div>
           <div class="lp-date">2027年5月1日(木)〜2日(金)</div>
