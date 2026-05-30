@@ -42,7 +42,7 @@
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar">🗺️ あんないAI</div>
+      <div class="chat-header-bar"><span class="ai-avatar-circle">🗺️</span>あんないAI</div>
       <div id="chat-screen" class="chat-screen"></div>
     </div>
     <div class="progress-dots">
@@ -88,7 +88,7 @@
       }, 1000);
     }
     const engine = new DemoEngine([
-      { type: 'user', text: 'イベントはどこで確認できる？', tip: 'ここをタップしてみて' },
+      { type: 'user', chips: ['イベントはどこで確認できる？', '入会したばかりで迷ってる', '最初に何をすればいい？'] },
       { type: 'ai',   text: 'カレンダーはこちら👉 今月は交流会と勉強会があります' },
       { type: 'user', text: '質問はどこにすればいい？' },
       { type: 'ai',   text: '質問チャンネルに投稿してね。すぐ誰かが返してくれるよ' },

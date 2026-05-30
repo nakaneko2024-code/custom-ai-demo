@@ -42,7 +42,7 @@
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar">🐦 ことりAI</div>
+      <div class="chat-header-bar"><span class="ai-avatar-circle">🐦</span>ことりAI</div>
       <div id="chat-screen" class="chat-screen"></div>
     </div>
     <div class="progress-dots">
@@ -88,7 +88,7 @@
       }, 1000);
     }
     const engine = new DemoEngine([
-      { type: 'user', text: '何から始めたらいいかわからない', tip: 'ここをタップしてみて' },
+      { type: 'user', chips: ['何から始めたらいいかわからない', '起業したいけど自信がない', 'やりたいことが見つからない'] },
       { type: 'ai',   text: 'まずは、過去に人にして喜ばれたことで自分では自然に動いた行動は何？ノートに書いてみよう' },
       { type: 'user', text: '失敗したらどうしよう…' },
       { type: 'ai',   text: '失敗も実績になるよ。やってみた人だけ見える景色がある' },

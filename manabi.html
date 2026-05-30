@@ -42,7 +42,7 @@
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar">📚 まなびAI</div>
+      <div class="chat-header-bar"><span class="ai-avatar-circle">📚</span>まなびAI</div>
       <div id="chat-screen" class="chat-screen"></div>
     </div>
     <div class="progress-dots">
@@ -88,7 +88,7 @@
       }, 1000);
     }
     const engine = new DemoEngine([
-      { type: 'user', text: '講座のアーカイブはどこ？', tip: 'ここをタップしてみて' },
+      { type: 'user', chips: ['講座のアーカイブはどこ？', 'わからないことが出てきた', '課題の提出方法は？'] },
       { type: 'ai',   text: '内容の絞り込み・未視聴はこちら👉' },
       { type: 'user', text: '見た後はどうすればいい？' },
       { type: 'ai',   text: 'アーカイブのアウトプットコメントを入れて仲間や講師にシェアしよう！' },
