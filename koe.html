@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>こえびとAI — 音声コーチング体験デモ</title>
+  <title>こえびとAI — 音声デイリー配信体験デモ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -88,15 +88,15 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 
   <div class="story-card" id="story-card">
     <div class="ai-name">🎙️ こえびとAI</div>
-    <span class="ai-type">音声コーチング系</span>
+    <span class="ai-type">音声デイリー配信系</span>
     <div class="pain-box">
       <span class="pain-label">📌 こんなお悩みありませんか？</span>
-      <span class="pain-item">「コーチングって自分に合うのかな…」</span>
-      <span class="pain-item">「入会前に雰囲気を知りたい」</span>
+      <span class="pain-item">「毎日AIを触りたいけど何から始めれば…」</span>
+      <span class="pain-item">「続けられるか自信がない」</span>
     </div>
     <div class="want-box">
       <span class="want-label">✨ こんな叶えたいがある方に！</span>
-      <span class="want-text">実際の音声を聴いてから安心して入会できます</span>
+      <span class="want-text">朝の5分でAIが身につく。毎日届く音声でAI習慣をつくれます</span>
     </div>
     <button class="start-btn" onclick="trackClick('koe_start');startDemo()">▶ 体験してみる</button>
   </div>
@@ -104,15 +104,15 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar">🎙️ こえびとAI｜レゾナンスクラブ</div>
+      <div class="chat-header-bar">🎙️ こえびとAI｜SkipF MindUp</div>
       <div class="phone-content">
         <div class="audio-card">
-          <span class="track-badge">🎁 30秒 無料試聴</span>
+          <span class="track-badge">🎁 Day 1 無料試聴</span>
           <div class="track-header">
             <div class="track-icon-wrap">🎙️</div>
             <div>
-              <div class="track-title">Lesson 01</div>
-              <div class="track-sub">あなたの強みを見つける</div>
+              <div class="track-title">Day 1</div>
+              <div class="track-sub">AIで今日から変われる理由</div>
             </div>
           </div>
           <div class="waveform">
@@ -126,7 +126,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
           <div class="time-row"><span>0:00</span><span>0:30</span></div>
           <button class="play-btn-a" id="play-btn" onclick="trackClick('koe_play');startPlaying()">▶ 無料で試聴する</button>
         </div>
-        <div class="audio-msg" id="audio-msg">「続きは会員限定です。コーチングの詳細はDMからどうぞ👇」</div>
+        <div class="audio-msg" id="audio-msg">「続きはSkipF MindUp会員限定！31日間、毎朝AIが身につく音声が届きます🎙️」</div>
       </div>
     </div>
     <div class="progress-dots">
@@ -139,7 +139,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 
   <div class="end-screen" id="end-screen">
     <div class="end-title">🎙️ こえびとAIは<br>あなたにも作れます</div>
-    <p class="end-text">「聴いたら雰囲気がわかった！」入会前の不安をなくす音声体験AIを、あなたのコミュニティにも。</p>
+    <p class="end-text">「毎朝聴くだけでAIが習慣になった！」毎日届く音声コンテンツサイトを、あなたのコミュニティにも。</p>
     <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
     <button class="share-btn" onclick="trackClick('koe_copy');copyPageUrl()">🔗 このページのURLをコピーする</button>
     <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>

@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>みつけAI — 起業タイプ診断体験デモ</title>
+  <title>みつけAI — AI活用スタイル診断体験デモ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -85,15 +85,15 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 
   <div class="story-card" id="story-card">
     <div class="ai-name">🔮 みつけAI</div>
-    <span class="ai-type">診断・タイプ発見系</span>
+    <span class="ai-type">診断・スタイル発見系</span>
     <div class="pain-box">
       <span class="pain-label">📌 こんなお悩みありませんか？</span>
-      <span class="pain-item">「自分に向いている起業スタイルがわからない」</span>
-      <span class="pain-item">「何から選べばいいか迷ってしまう」</span>
+      <span class="pain-item">「AIをどう活用すればいいかわからない」</span>
+      <span class="pain-item">「ツールが多くてどれを使えばいいか迷う」</span>
     </div>
     <div class="want-box">
       <span class="want-label">✨ こんな叶えたいがある方に！</span>
-      <span class="want-text">3問答えるだけで、あなたのタイプを発見できます</span>
+      <span class="want-text">3問答えるだけで、あなたのAI活用スタイルがわかります</span>
     </div>
     <button class="start-btn" onclick="trackClick('mitsuke_start');startDemo()">▶ 体験してみる</button>
   </div>
@@ -101,7 +101,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar">🔮 みつけAI｜フローラボ</div>
+      <div class="chat-header-bar">🔮 みつけAI｜AIわくわく部</div>
       <div class="phone-content">
         <div class="quiz-wrap" id="quiz-wrap">
           <div class="q-progress">
@@ -110,10 +110,10 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
             <div class="q-prog-dot" id="pd3"></div>
           </div>
           <div class="q-label" id="q-label">質問 1 / 3</div>
-          <div class="q-text" id="q-text">起業のきっかけに近いのは？</div>
+          <div class="q-text" id="q-text">AIで一番やりたいことは？</div>
           <div class="choices">
-            <button class="choice-btn" id="choiceA" onclick="choose('A')">自分のスキルでお金を稼ぎたい</button>
-            <button class="choice-btn" id="choiceB" onclick="choose('B')">誰かの悩みを解決してあげたい</button>
+            <button class="choice-btn" id="choiceA" onclick="choose('A')">仕事や作業を効率化したい</button>
+            <button class="choice-btn" id="choiceB" onclick="choose('B')">発信や商品づくりに活かしたい</button>
           </div>
         </div>
         <div class="result-card" id="result-card">
@@ -136,7 +136,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 
   <div class="end-screen" id="end-screen">
     <div class="end-title">🔮 みつけAIは<br>あなたにも作れます</div>
-    <p class="end-text">「自分のタイプがわかって一歩踏み出せた！」診断AIで、メンバーの自己理解と行動を後押ししませんか？</p>
+    <p class="end-text">「自分のAI活用スタイルがわかった！」診断AIで、メンバーの自己理解と行動を後押ししませんか？</p>
     <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
     <button class="share-btn" onclick="trackClick('mitsuke_copy');copyPageUrl()">🔗 このページのURLをコピーする</button>
     <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>
@@ -162,9 +162,9 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
     }
 
     var qData=[
-      {q:'起業のきっかけに近いのは？', a:['自分のスキルでお金を稼ぎたい','誰かの悩みを解決してあげたい']},
-      {q:'得意な情報発信スタイルは？', a:['論理的にわかりやすく伝える','感情に寄り添って共感を生む']},
-      {q:'理想のお客様との関係は？', a:['プロとして信頼されたい','友人みたいに気軽に話せる']}
+      {q:'AIで一番やりたいことは？', a:['仕事や作業を効率化したい','発信や商品づくりに活かしたい']},
+      {q:'好きな学習スタイルは？', a:['手順が決まっていると安心','自由にアイデアを広げたい']},
+      {q:'AIに求めるものは？', a:['時間を節約できること','自分の可能性を広げること']}
     ];
     var answers=[], currentQ=0;
 
@@ -202,13 +202,13 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
       document.getElementById('quiz-wrap').style.display='none';
       var bCount=answers.filter(function(a){return a==='B';}).length;
       if(bCount>=2){
-        document.getElementById('result-emoji').textContent='🌸';
-        document.getElementById('result-type').textContent='共感型コーチ';
-        document.getElementById('result-desc').textContent='感情に寄り添う力が強み。深い信頼関係を築くコーチングスタイルがぴったりです。';
+        document.getElementById('result-emoji').textContent='🌟';
+        document.getElementById('result-type').textContent='クリエイティブ活用型';
+        document.getElementById('result-desc').textContent='発信・表現が得意なあなたに。AI×コンテンツ作成でオリジナルをどんどん生み出すスタイルがぴったりです。';
       } else {
-        document.getElementById('result-emoji').textContent='💎';
-        document.getElementById('result-type').textContent='専門家型プロデューサー';
-        document.getElementById('result-desc').textContent='体系的に伝える力が強み。知識やスキルを整理してわかりやすく届けるスタイルがぴったりです。';
+        document.getElementById('result-emoji').textContent='⚡';
+        document.getElementById('result-type').textContent='効率化マスター型';
+        document.getElementById('result-desc').textContent='仕組み化・時短が得意なあなたに。AI×業務効率化でどんどん時間を生み出すスタイルがぴったりです。';
       }
       document.getElementById('result-card').classList.add('shown');
       document.getElementById('dot3').classList.add('active');

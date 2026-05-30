@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>とびらAI — コンテンツ開放体験デモ</title>
+  <title>とびらAI — 会員サイト体験デモ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -84,15 +84,15 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 
   <div class="story-card" id="story-card">
     <div class="ai-name">🗝️ とびらAI</div>
-    <span class="ai-type">コンテンツ開放系</span>
+    <span class="ai-type">会員サイト系</span>
     <div class="pain-box">
       <span class="pain-label">📌 こんなお悩みありませんか？</span>
-      <span class="pain-item">「コンテンツが多すぎてどこから始めれば…」</span>
-      <span class="pain-item">「続けられるか不安」</span>
+      <span class="pain-item">「入会したけどどこから手をつければ…」</span>
+      <span class="pain-item">「AIをちゃんと活用できるか不安」</span>
     </div>
     <div class="want-box">
       <span class="want-label">✨ こんな叶えたいがある方に！</span>
-      <span class="want-text">ステップ順に「次の扉」が開いて、自然に進めます</span>
+      <span class="want-text">入会直後から使える機能が順番に開いて、迷わず進めます</span>
     </div>
     <button class="start-btn" onclick="trackClick('tobira_start');startDemo()">▶ 体験してみる</button>
   </div>
@@ -100,30 +100,30 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar">🗝️ とびらAI｜ブルームラボ</div>
+      <div class="chat-header-bar">🗝️ とびらAI｜AIわくわく部</div>
       <div class="phone-content">
-        <div class="lock-intro">「入会ありがとうございます！<br>ステップ順に扉を開けていきましょう🗝️」</div>
+        <div class="lock-intro">「AIわくわく部へようこそ！<br>ステップ順にコンテンツが開放されます🗝️」</div>
         <div class="lock-item" id="item1">
           <span class="lk-icon" id="icon1">🔒</span>
           <div class="lk-info">
             <div class="lk-type">動画</div>
-            <div class="lk-title">Lesson 1「はじめの一歩」</div>
+            <div class="lk-title">レクチャー動画｜ChatGPT基本操作</div>
           </div>
           <span class="lk-badge" id="badge1">会員限定</span>
         </div>
         <div class="lock-item" id="item2">
           <span class="lk-icon" id="icon2">🔒</span>
           <div class="lk-info">
-            <div class="lk-type">動画</div>
-            <div class="lk-title">Lesson 2「コア価値を見つける」</div>
+            <div class="lk-type">予約</div>
+            <div class="lk-title">グルコン予約｜今月の相談枠</div>
           </div>
           <span class="lk-badge" id="badge2">会員限定</span>
         </div>
         <div class="lock-item" id="item3">
           <span class="lk-icon" id="icon3">🔒</span>
           <div class="lk-info">
-            <div class="lk-type">音声</div>
-            <div class="lk-title">Bonus「特別コーチング」</div>
+            <div class="lk-type">資料</div>
+            <div class="lk-title">プロンプト集｜実践ワークテンプレ</div>
           </div>
           <span class="lk-badge" id="badge3">会員限定</span>
         </div>
@@ -131,11 +131,11 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
           <span class="lk-icon" id="icon4">🔒</span>
           <div class="lk-info">
             <div class="lk-type">コミュニティ</div>
-            <div class="lk-title">メンバー専用スペース</div>
+            <div class="lk-title">メンバー専用チャット</div>
           </div>
           <span class="lk-badge" id="badge4">会員限定</span>
         </div>
-        <div class="unlock-msg" id="umsg">✨ 次のコンテンツが解放されました！</div>
+        <div class="unlock-msg" id="umsg">✅ 次のコンテンツが解放されました！</div>
       </div>
     </div>
     <div class="progress-dots">
@@ -150,7 +150,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 
   <div class="end-screen" id="end-screen">
     <div class="end-title">🗝️ とびらAIは<br>あなたにも作れます</div>
-    <p class="end-text">「迷わずスタートできた！」コンテンツを段階的に開放するAIで、メンバーの学習継続を後押ししませんか？</p>
+    <p class="end-text">「何から始めればいいかわかった！」会員サイトの機能を順番に解放するAIで、メンバーの離脱を防ぎませんか？</p>
     <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
     <button class="share-btn" onclick="trackClick('tobira_copy');copyPageUrl()">🔗 このページのURLをコピーする</button>
     <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>
