@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>こえびとAI — 音声デイリー配信体験デモ</title>
+  <title>音声コンテンツ埋め込みAI — 体験デモ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -19,7 +19,9 @@
 :root{--c1:#d4748a;--c2:#9a3d5a;--gold:#c9954a;--light:#fce8ef;--dark:#3a1520}
 body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 16px 40px}
 .header{text-align:center;color:#fff;margin-bottom:20px}
-#day-count{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;display:block;line-height:1;letter-spacing:.05em}
+.header-day-row{display:flex;align-items:center;justify-content:center;gap:10px}
+.header-icon{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.7);flex-shrink:0}
+#day-count{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;line-height:1;letter-spacing:.05em}
 .day-label{font-size:12px;opacity:.75;display:block;margin-top:4px}
 .header-title{font-size:13px;margin-top:6px;opacity:.9}
 .story-card{background:#fff;border-radius:16px;padding:20px;max-width:340px;width:100%;margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,.15)}
@@ -81,14 +83,17 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 <body>
 
   <header class="header">
-    <span id="day-count">Day --</span>
+    <div class="header-day-row">
+      <img class="header-icon" src="./naka-profile.png" alt="">
+      <span id="day-count">Day --</span>
+    </div>
     <span class="day-label">2026年3月17日 スタート</span>
     <p class="header-title">Claude Codeで毎日AIを触っています</p>
   </header>
 
   <div class="story-card" id="story-card">
-    <div class="ai-name">🎙️ こえびとAI</div>
-    <span class="ai-type">音声デイリー配信系</span>
+    <div class="ai-name">🎙️ 音声コンテンツ埋め込みAI</div>
+    <span class="ai-type">音声コンテンツ埋め込み系</span>
     <div class="pain-box">
       <span class="pain-label">📌 こんなお悩みありませんか？</span>
       <span class="pain-item">「毎日AIを触りたいけど何から始めれば…」</span>
@@ -104,7 +109,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar">🎙️ こえびとAI｜MindUp</div>
+      <div class="chat-header-bar">🎙️ 音声コンテンツ埋め込みAI｜MindUp</div>
       <div class="phone-content">
         <div class="audio-card">
           <span class="track-badge">🎁 Day 1 無料試聴</span>
@@ -126,7 +131,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
           <div class="time-row"><span>0:00</span><span>0:30</span></div>
           <button class="play-btn-a" id="play-btn" onclick="trackClick('koe_play');startPlaying()">▶ 無料で試聴する</button>
         </div>
-        <div class="audio-msg" id="audio-msg">「続きは会員限定！31日間、毎朝AIが身につく音声が届きます🎙️」</div>
+        <div class="audio-msg" id="audio-msg">「続きは会員限定！31日間、毎朝マインドが上がる音声が自動開放🔑」</div>
       </div>
     </div>
     <div class="progress-dots">
@@ -138,8 +143,8 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
   </div>
 
   <div class="end-screen" id="end-screen">
-    <div class="end-title">🎙️ こえびとAIは<br>あなたにも作れます</div>
-    <p class="end-text">「毎朝聴くだけでAIが習慣になった！」毎日届く音声コンテンツサイトを、あなたのコミュニティにも。</p>
+    <div class="end-title">🎙️ 音声コンテンツ埋め込みAIは<br>あなたにも作れます</div>
+    <p class="end-text">声で届けたいな。聴く生徒さんも受け取りやすい。あなたのコミュニティにも。</p>
     <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
     <button class="share-btn" onclick="trackClick('koe_copy');copyPageUrl()">🔗 このページのURLをコピーする</button>
     <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>
