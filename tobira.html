@@ -145,7 +145,10 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
       <div class="dot" id="dot3"></div>
       <div class="dot" id="dot4"></div>
     </div>
-    <button class="next-btn" id="next-btn" onclick="trackClick('tobira_next');nextStep()">入会してみる ▶</button>
+    <div style="display:flex;flex-direction:column;gap:8px;width:300px;">
+      <button class="next-btn" id="next-btn" style="display:block;width:100%" onclick="trackClick('tobira_next');nextStep()">まずはここからスタート ▶</button>
+      <button class="next-btn" id="next-btn2" style="display:block;width:100%" onclick="trackClick('tobira_next2');nextStep()">あなたの受けるグルコン・セミナー ▶</button>
+    </div>
   </div>
 
   <div class="end-screen" id="end-screen">
@@ -195,7 +198,6 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
     }
 
     function nextStep(){
-      var btn=document.getElementById('next-btn');
       if(step<unlockSteps.length){
         unlockSteps[step].forEach(function(n){unlockItem(n);});
         step++;
@@ -203,7 +205,6 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
         var umsg=document.getElementById('umsg');
         umsg.classList.add('shown');
         setTimeout(function(){umsg.classList.remove('shown');},1800);
-        btn.textContent = step===unlockSteps.length ? 'すべて解放！▶' : '次へ ▶';
       } else {
         document.getElementById('phone-wrapper').style.display='none';
         document.getElementById('end-screen').classList.add('visible');
