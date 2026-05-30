@@ -41,7 +41,11 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
 .phone-content{flex:1;overflow-y:auto;display:flex;flex-direction:column}
 
 /* イベントLPヒーロー */
-.lp-hero{background:linear-gradient(160deg,var(--c2) 0%,var(--dark) 100%);padding:16px 14px 14px;text-align:center;flex-shrink:0}
+.lp-hero{background:linear-gradient(160deg,var(--c2) 0%,var(--dark) 100%);padding:16px 14px 14px;text-align:center;flex-shrink:0;position:relative}
+.lp-host{position:absolute;top:8px;left:10px;display:flex;align-items:center;gap:5px}
+.lp-host-icon{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.55);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.lp-host-icon img{width:100%;height:100%;object-fit:cover}
+.lp-host-label{font-size:8px;color:rgba(255,255,255,.7);letter-spacing:.04em}
 .lp-event-label{font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.7);margin-bottom:4px}
 .lp-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:4px}
 .lp-date{font-size:10px;color:rgba(255,255,255,.85);background:rgba(255,255,255,.15);display:inline-block;padding:3px 10px;border-radius:10px;margin-top:3px}
@@ -118,9 +122,15 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
       <div class="chat-header-bar">✨ みちびきAI｜軽井沢合宿2026</div>
       <div class="phone-content">
         <div class="lp-hero">
+          <div class="lp-host">
+            <div class="lp-host-icon">
+              <img src="https://ui-avatars.com/api/?name=%E6%B2%99%E7%B9%94&background=c87941&color=fff&size=52" alt="主催者" onerror="this.parentNode.textContent='🌸'">
+            </div>
+            <span class="lp-host-label">主催</span>
+          </div>
           <div class="lp-event-label">SKIP F × VILLA STAY</div>
           <div class="lp-title">軽井沢 合宿 2026</div>
-          <div class="lp-date">2026年6月6日(土)〜7日(日)</div>
+          <div class="lp-date">2027年5月1日(木)〜2日(金)</div>
         </div>
         <div class="tab-bar">
           <button class="tab-btn active" onclick="switchTab('concept',this)">コンセプト</button>
@@ -143,7 +153,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
             <div class="lp-card-title">SUPPORT</div>
             <div class="lp-card-text">講師A・講師Bが同席。個別相談・グループセッションで事業の壁を突破しよう。</div>
           </div>
-          <button class="apply-btn" onclick="trackClick('michibiki_apply');nextDot()">申し込みを見る ▶</button>
+          <button class="apply-btn" onclick="trackClick('michibiki_apply');nextDot()">ワークをシェアする ▶</button>
         </div>
         <div class="tab-panel" id="tab-program">
           <div class="lp-program-item">
@@ -172,6 +182,7 @@ body{font-family:'Noto Serif JP',serif;background:linear-gradient(135deg,var(--c
             <div class="voice-text">オンラインだけでは生まれない深い関係が、2日間でできました。</div>
           </div>
           <button class="apply-btn" onclick="trackClick('michibiki_end');showEnd()">詳しく聞いてみる ▶</button>
+          <button class="apply-btn" style="margin-top:6px;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.6);color:#fff;" onclick="trackClick('michibiki_question');showEnd()">講師に質問送信 ✉️</button>
         </div>
       </div>
     </div>
