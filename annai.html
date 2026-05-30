@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>あんないAI — コミュニティ案内体験デモ</title>
+  <title>あんないAI — 出欠・欠席連絡体験デモ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
@@ -25,16 +25,16 @@
   </header>
 
   <div class="story-card" id="story-card">
-    <div class="ai-name">🗺️ あんないAI</div>
-    <span class="ai-type">コミュニティ案内系</span>
+    <div class="ai-name">✅ あんないAI</div>
+    <span class="ai-type">出欠・欠席連絡系</span>
     <div class="pain-box">
       <span class="pain-label">📌 こんなお悩みありませんか？</span>
-      <span class="pain-item">「入会したけどコミュニティの使い方がわからない」</span>
-      <span class="pain-item">「最初から迷子になって続けられるか不安」</span>
+      <span class="pain-item">「欠席の連絡をどこにすればいいかわからない」</span>
+      <span class="pain-item">「次のグルコンがいつか確認するのが面倒」</span>
     </div>
     <div class="want-box">
       <span class="want-label">✨ こんな叶えたいがある方に！</span>
-      <span class="want-text">入会直後から迷わず自信を持ってスタートできます</span>
+      <span class="want-text">欠席連絡もグルコン確認もここひとつで完結</span>
     </div>
     <button class="start-btn" onclick="engine.start()">▶ 体験してみる</button>
   </div>
@@ -42,7 +42,7 @@
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar"><span class="ai-avatar-circle">🗺️</span>あんないAI</div>
+      <div class="chat-header-bar"><span class="ai-avatar-circle">✅</span>あんないAI</div>
       <div id="chat-screen" class="chat-screen"></div>
       <div class="chat-input-area" id="chat-input-area" style="display:none;">
         <div class="chat-input-row">
@@ -60,8 +60,8 @@
   </div>
 
   <div class="end-screen" id="end-screen">
-    <div class="end-title">🗺️ あんないAIはあなたのコミュニティにも作れます</div>
-    <p class="end-text">入会後すぐに使い方がわかるAIで、メンバーの離脱を防ぎませんか？</p>
+    <div class="end-title">✅ あんないAIはあなたのコミュニティにも作れます</div>
+    <p class="end-text">欠席連絡の受け口をAIにすることで、主催者への連絡漏れをなくしませんか？</p>
     <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
     <button class="share-btn" onclick="copyPageUrl()">🔗 このページのURLをコピーする</button>
     <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>
@@ -92,9 +92,9 @@
       }, 1000);
     }
     const engine = new DemoEngine([
-      { type: 'user', chips: ['イベントはどこで確認できる？', '入会したばかりで迷ってる', '最初に何をすればいい？'] },
-      { type: 'ai',   text: 'カレンダーはこちら👉 今月は交流会と勉強会があります', choices: ['参加方法が知りたい', '質問はどこにすれば？', '他の機能も知りたい'] },
-      { type: 'ai',   text: '質問チャンネルに投稿してね。すぐ誰かが返してくれるよ', choices: ['どんな質問でもOK？', '投稿するのが恥ずかしい'] },
+      { type: 'user', chips: ['次のグルコンいつ？', '欠席の連絡をしたい', '今月何回グルコンある？'] },
+      { type: 'ai', text: '次回のルナサークルグルコンは6/12(木)20時です。参加できますか？', choices: ['参加します！', '欠席します', '日程変更できる？'] },
+      { type: 'ai', text: '欠席の連絡を受け取りました📩 主催者に自動で伝えます。アーカイブは後日共有されます', choices: ['アーカイブはどこ？', 'ありがとう！', '次回の日程も知りたい'] },
       { type: 'end' }
     ]);
   </script>

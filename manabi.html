@@ -11,7 +11,7 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>まなびAI — 講座Q&amp;A体験デモ</title>
+  <title>まなびAI — グルコン日程調整体験デモ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
@@ -25,16 +25,16 @@
   </header>
 
   <div class="story-card" id="story-card">
-    <div class="ai-name">📚 まなびAI</div>
-    <span class="ai-type">講座Q&amp;A系</span>
+    <div class="ai-name">🗓️ まなびAI</div>
+    <span class="ai-type">グルコン日程調整系</span>
     <div class="pain-box">
       <span class="pain-label">📌 こんなお悩みありませんか？</span>
-      <span class="pain-item">「講座でわからないことがあるけど質問しにくい」</span>
-      <span class="pain-item">「アーカイブや課題の場所がわからない」</span>
+      <span class="pain-item">「今月のグルコン日程がわからない」</span>
+      <span class="pain-item">「日程回答するのを忘れがち」</span>
     </div>
     <div class="want-box">
       <span class="want-label">✨ こんな叶えたいがある方に！</span>
-      <span class="want-text">いつでも・何度でも・気軽に疑問を解決できます</span>
+      <span class="want-text">チャットで簡単に日程確認・回答ができます</span>
     </div>
     <button class="start-btn" onclick="engine.start()">▶ 体験してみる</button>
   </div>
@@ -42,7 +42,7 @@
   <div id="phone-wrapper" class="phone-wrapper">
     <div class="phone-frame">
       <div class="phone-notch"></div>
-      <div class="chat-header-bar"><span class="ai-avatar-circle">📚</span>まなびAI</div>
+      <div class="chat-header-bar"><span class="ai-avatar-circle">🗓️</span>まなびAI</div>
       <div id="chat-screen" class="chat-screen"></div>
       <div class="chat-input-area" id="chat-input-area" style="display:none;">
         <div class="chat-input-row">
@@ -60,8 +60,8 @@
   </div>
 
   <div class="end-screen" id="end-screen">
-    <div class="end-title">📚 まなびAIはあなたのコミュニティにも作れます</div>
-    <p class="end-text">受講生の「これどういう意味？」にいつでも答えるAIで、学習サポートを強化しませんか？</p>
+    <div class="end-title">🗓️ まなびAIはあなたのコミュニティにも作れます</div>
+    <p class="end-text">グルコンの日程調整・回答収集をAIに任せて、管理の手間をゼロにしませんか？</p>
     <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
     <button class="share-btn" onclick="copyPageUrl()">🔗 このページのURLをコピーする</button>
     <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>
@@ -92,9 +92,9 @@
       }, 1000);
     }
     const engine = new DemoEngine([
-      { type: 'user', chips: ['講座のアーカイブはどこ？', 'わからないことが出てきた', '課題の提出方法は？'] },
-      { type: 'ai',   text: '内容の絞り込み・未視聴はこちら👉 アーカイブ一覧からどうぞ', choices: ['特定の回が見つからない', '視聴後のアウトプットは？', '別の質問がある'] },
-      { type: 'ai',   text: 'アウトプットコメントを入れて仲間や講師にシェアしよう！', choices: ['コメントが書けない', 'どんな内容で書けばいい？'] },
+      { type: 'user', chips: ['今月のグルコン日程は？', '参加日時を回答したい', 'まだ回答できてない'] },
+      { type: 'ai', text: '今月のスターラボグルコンは3候補あります。参加できる日時を選んでね👇', choices: ['6/5(木) 20時', '6/12(木) 20時', '6/19(木) 20時'] },
+      { type: 'ai', text: '「6/12(木) 20時」で回答を受け付けました✅ 確定したら改めてお知らせします', choices: ['他の人の参加状況は？', '変更できる？', 'ありがとう！'] },
       { type: 'end' }
     ]);
   </script>
