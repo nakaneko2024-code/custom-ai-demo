@@ -29,12 +29,12 @@
     <span class="ai-type">グルコン日程調整系</span>
     <div class="pain-box">
       <span class="pain-label">📌 こんなお悩みありませんか？</span>
-      <span class="pain-item">「今月のグルコン日程がわからない」</span>
-      <span class="pain-item">「日程回答するのを忘れがち」</span>
+      <span class="pain-item">「アンケートリンクを開くのが面倒」</span>
+      <span class="pain-item">「回答方法がわからなくて放置してしまう」</span>
     </div>
     <div class="want-box">
       <span class="want-label">✨ こんな叶えたいがある方に！</span>
-      <span class="want-text">チャットで簡単に日程確認・回答ができます</span>
+      <span class="want-text">チャットでそのまま○△×で日程回答できます</span>
     </div>
     <button class="start-btn" onclick="engine.start()">▶ 体験してみる</button>
   </div>
@@ -61,7 +61,7 @@
 
   <div class="end-screen" id="end-screen">
     <div class="end-title">🗓️ まなびAIはあなたのコミュニティにも作れます</div>
-    <p class="end-text">グルコンの日程調整・回答収集をAIに任せて、管理の手間をゼロにしませんか？</p>
+    <p class="end-text">トントン送って「回答してね」の手間をAIに。チャットで○△×回答できる日程調整AIを、あなたのコミュニティにも。</p>
     <div class="copy-toast" id="copy-toast">📋 コピーされました</div>
     <button class="share-btn" onclick="copyPageUrl()">🔗 このページのURLをコピーする</button>
     <div class="dm-bubble" id="dm-bubble">💬 DMしてね</div>
@@ -92,9 +92,9 @@
       }, 1000);
     }
     const engine = new DemoEngine([
-      { type: 'user', chips: ['今月のグルコン日程は？', '参加日時を回答したい', 'まだ回答できてない'] },
-      { type: 'ai', text: '今月のスターラボグルコンは3候補あります。参加できる日時を選んでね👇', choices: ['6/5(木) 20時', '6/12(木) 20時', '6/19(木) 20時'] },
-      { type: 'ai', text: '「6/12(木) 20時」で回答を受け付けました✅ 確定したら改めてお知らせします', choices: ['他の人の参加状況は？', '変更できる？', 'ありがとう！'] },
+      { type: 'user', chips: ['アンケートに回答する', '回答期限はいつ？', 'まだ回答できてない'] },
+      { type: 'ai', text: '【7月グルコンアンケート📋】\n\n回答期限：6月15日（日）まで\n\n○：参加できる\n△：昼夜どちらか参加\n×：参加できない\n\n参加できる日時を選んでね👇', choices: ['7/3(木)夜 ○参加できる', '7/10(木)夜 ○参加できる', '7/17(木)夜 △どちらか', '今月は× 参加できない'] },
+      { type: 'ai', text: '「7/3(木)夜 ○」で回答を受け付けました✅\n\n間違えた場合は誤回答を削除してから再回答してね。スムーズな調整のためご協力ありがとうございます！', choices: ['回答を修正したい', '確定日程はいつわかる？', 'ありがとう！'] },
       { type: 'end' }
     ]);
   </script>
