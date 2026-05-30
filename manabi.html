@@ -44,15 +44,19 @@
       <div class="phone-notch"></div>
       <div class="chat-header-bar"><span class="ai-avatar-circle">📚</span>まなびAI</div>
       <div id="chat-screen" class="chat-screen"></div>
+      <div class="chat-input-area" id="chat-input-area" style="display:none;">
+        <div class="chat-input-row">
+          <textarea id="chat-input" class="chat-textarea-input" placeholder="なんでも書いて送ってみて" rows="1"></textarea>
+          <button class="chat-send-btn" onclick="engine.send()">送信</button>
+        </div>
+      </div>
     </div>
     <div class="progress-dots">
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
-      <div class="dot"></div>
     </div>
-    <button class="next-btn" id="next-btn" onclick="engine.next()">次へ ▶</button>
   </div>
 
   <div class="end-screen" id="end-screen">
@@ -89,9 +93,8 @@
     }
     const engine = new DemoEngine([
       { type: 'user', chips: ['講座のアーカイブはどこ？', 'わからないことが出てきた', '課題の提出方法は？'] },
-      { type: 'ai',   text: '内容の絞り込み・未視聴はこちら👉' },
-      { type: 'user', text: '見た後はどうすればいい？' },
-      { type: 'ai',   text: 'アーカイブのアウトプットコメントを入れて仲間や講師にシェアしよう！' },
+      { type: 'ai',   text: '内容の絞り込み・未視聴はこちら👉 アーカイブ一覧からどうぞ', choices: ['特定の回が見つからない', '視聴後のアウトプットは？', '別の質問がある'] },
+      { type: 'ai',   text: 'アウトプットコメントを入れて仲間や講師にシェアしよう！', choices: ['コメントが書けない', 'どんな内容で書けばいい？'] },
       { type: 'end' }
     ]);
   </script>

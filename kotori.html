@@ -44,15 +44,19 @@
       <div class="phone-notch"></div>
       <div class="chat-header-bar"><span class="ai-avatar-circle">🐦</span>ことりAI</div>
       <div id="chat-screen" class="chat-screen"></div>
+      <div class="chat-input-area" id="chat-input-area" style="display:none;">
+        <div class="chat-input-row">
+          <textarea id="chat-input" class="chat-textarea-input" placeholder="なんでも書いて送ってみて" rows="1"></textarea>
+          <button class="chat-send-btn" onclick="engine.send()">送信</button>
+        </div>
+      </div>
     </div>
     <div class="progress-dots">
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
-      <div class="dot"></div>
     </div>
-    <button class="next-btn" id="next-btn" onclick="engine.next()">次へ ▶</button>
   </div>
 
   <div class="end-screen" id="end-screen">
@@ -89,9 +93,8 @@
     }
     const engine = new DemoEngine([
       { type: 'user', chips: ['何から始めたらいいかわからない', '起業したいけど自信がない', 'やりたいことが見つからない'] },
-      { type: 'ai',   text: 'まずは、過去に人にして喜ばれたことで自分では自然に動いた行動は何？ノートに書いてみよう' },
-      { type: 'user', text: '失敗したらどうしよう…' },
-      { type: 'ai',   text: '失敗も実績になるよ。やってみた人だけ見える景色がある' },
+      { type: 'ai',   text: 'まずは、過去に人にして喜ばれたことで自然に動いた行動は何？ノートに書いてみよう', choices: ['うまくいった経験が思い当たらない', '失敗が怖くて動けない', '次のステップが知りたい'] },
+      { type: 'ai',   text: '失敗も実績になるよ。やってみた人だけ見える景色がある', choices: ['背中を押してほしい', '具体的なアクションは？'] },
       { type: 'end' }
     ]);
   </script>

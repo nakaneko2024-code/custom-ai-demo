@@ -279,6 +279,93 @@ body {
   opacity: 0.8;
 }
 
+/* ── チャット入力エリア（下部） ── */
+.chat-input-area {
+  background: #0d1020;
+  border-top: 1px solid #1e2535;
+  padding: 8px 10px;
+  flex-shrink: 0;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.chat-textarea-input {
+  flex: 1;
+  background: #1a2033;
+  border: 1px solid #252f45;
+  border-radius: 12px;
+  color: #e0dbd4;
+  font-size: 12px;
+  font-family: 'Noto Sans JP', sans-serif;
+  padding: 8px 10px;
+  resize: none;
+  min-height: 36px;
+  line-height: 1.5;
+  outline: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.chat-textarea-input::placeholder {
+  color: #4a5268;
+}
+
+.chat-textarea-input:focus {
+  border-color: #e8956d;
+}
+
+.chat-send-btn {
+  background: #e8956d;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 12px;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  white-space: nowrap;
+  flex-shrink: 0;
+  height: 36px;
+}
+
+.chat-send-btn:active {
+  opacity: 0.75;
+}
+
+/* ── AIバブル内 選択肢チップ ── */
+.choice-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 2px 10px 6px;
+}
+
+.ai-choice-chip {
+  background: rgba(232, 149, 109, 0.1);
+  border: 1px solid rgba(232, 149, 109, 0.3);
+  border-radius: 14px;
+  color: #c8c0b8;
+  font-size: 11px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  transition: all 0.15s;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.ai-choice-chip:hover,
+.ai-choice-chip.selected {
+  background: rgba(232, 149, 109, 0.2);
+  border-color: #e8956d;
+  color: #e8956d;
+}
+
 /* ── QUICK START チップス ── */
 .quick-start-area {
   padding: 10px 10px 4px;

@@ -44,15 +44,19 @@
       <div class="phone-notch"></div>
       <div class="chat-header-bar"><span class="ai-avatar-circle">🎓</span>センセイAI</div>
       <div id="chat-screen" class="chat-screen"></div>
+      <div class="chat-input-area" id="chat-input-area" style="display:none;">
+        <div class="chat-input-row">
+          <textarea id="chat-input" class="chat-textarea-input" placeholder="なんでも書いて送ってみて" rows="1"></textarea>
+          <button class="chat-send-btn" onclick="engine.send()">送信</button>
+        </div>
+      </div>
     </div>
     <div class="progress-dots">
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
-      <div class="dot"></div>
     </div>
-    <button class="next-btn" id="next-btn" onclick="engine.next()">次へ ▶</button>
   </div>
 
   <div class="end-screen" id="end-screen">
@@ -89,9 +93,8 @@
     }
     const engine = new DemoEngine([
       { type: 'user', chips: ['RASの法則ってなんでしたっけ？', '復習したいことがある', '先生の言葉をもう一度聞きたい'] },
-      { type: 'ai',   text: '網様体賦活系のこと。注目したものが見えてくる脳の仕組みだよ' },
-      { type: 'user', text: 'どう使えばいい？' },
-      { type: 'ai',   text: 'まず"欲しい未来"を言葉にしてみて。脳が勝手に探し始めるから' },
+      { type: 'ai',   text: '網様体賦活系のこと。注目したものが見えてくる脳の仕組みだよ', choices: ['もっと詳しく知りたい', 'どう使えばいい？', 'ありがとう！'] },
+      { type: 'ai',   text: 'まず"欲しい未来"を言葉にしてみて。脳が勝手に探し始めるから', choices: ['言葉にするのが難しい', 'なるほど！試してみる'] },
       { type: 'end' }
     ]);
   </script>

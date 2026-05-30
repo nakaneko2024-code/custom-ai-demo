@@ -9,17 +9,30 @@ function updateDayCounter() {
 }
 
 // ステップエンジン
-// steps 配列の各要素：{ type: 'user'|'ai'|'end', text: '...', tip: '...' }
+// steps: { type: 'user', chips: [...] } | { type: 'ai', text: '...', choices: [...] } | { type: 'end' }
 class DemoEngine {
   constructor(steps) {
     this.steps = steps;
     this.current = 0;
     this.chatScreen = document.getElementById('chat-screen');
-    this.nextBtn = document.getElementById('next-btn');
+    this.chatInput = document.getElementById('chat-input');
+    this.inputArea = document.getElementById('chat-input-area');
     this.endScreen = document.getElementById('end-screen');
     this.phoneWrapper = document.getElementById('phone-wrapper');
     this.storyCard = document.getElementById('story-card');
     this.dots = document.querySelectorAll('.dot');
+    this._setupKeyboard();
+  }
+
+  _setupKeyboard() {
+    if (this.chatInput) {
+      this.chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
+          e.preventDefault();
+          this.send();
+        }
+      });
+    }
   }
 
   start() {
@@ -29,11 +42,45 @@ class DemoEngine {
     this.updateDots();
   }
 
-  next() {
+  // 送信ボタン or Enter で呼ばれる
+  send() {
+    // 既に最後のステップなら何もしない
+    if (this.current >= this.steps.length - 1) return;
+
+    const text = this.chatInput ? this.chatInput.value.trim() : '';
+
+    // 既存のchoice-chips-wrapを削除
+    this.chatScreen.querySelectorAll('.choice-chips-wrap').forEach(c => c.remove());
+
+    if (text) {
+      // テキストをユーザーバブルとして表示
+      this._addBubble('user', text);
+      if (this.chatInput) this.chatInput.value = '';
+      // 700ms後に次のAIステップへ
+      setTimeout(() => this._advance(), 700);
+    } else {
+      // テキストなしでもそのまま次へ
+      this._advance();
+    }
+  }
+
+  _advance() {
     this.current++;
     if (this.current >= this.steps.length) return;
     this.renderStep(this.current);
     this.updateDots();
+  }
+
+  _addBubble(type, text) {
+    const row = document.createElement('div');
+    row.className = 'bubble-row ' + type;
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble ' + type;
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    this.chatScreen.appendChild(row);
+    requestAnimationFrame(() => requestAnimationFrame(() => row.classList.add('shown')));
+    this.chatScreen.scrollTop = this.chatScreen.scrollHeight;
   }
 
   renderStep(index) {
@@ -45,54 +92,61 @@ class DemoEngine {
       return;
     }
 
-    // QUICK STARTチップス（最初のステップ）
+    // QUICK STARTチップス（chips ありの user ステップ）
     if (step.chips && step.chips.length > 0) {
-      this._showChips(step.chips);
-      return; // チップ選択後に次のステップへ進む
+      this._showStartChips(step.chips);
+      if (this.inputArea) this.inputArea.style.display = 'block';
+      return;
     }
 
-    // 吹き出しを追加
-    const row = document.createElement('div');
-    row.className = 'bubble-row ' + step.type;
-    const bubble = document.createElement('div');
-    bubble.className = 'bubble ' + step.type;
-    bubble.textContent = step.text;
-    row.appendChild(bubble);
-    this.chatScreen.appendChild(row);
+    // 通常バブル（ai または user）
+    this._addBubble(step.type, step.text);
 
-    // フェードインアニメーション
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => row.classList.add('shown'));
-    });
-
-    // 誘導チップ（タップで次へ進める）
-    if (step.tip) {
-      // 古いチップを削除
-      const oldTips = this.chatScreen.querySelectorAll('.guide-tip');
-      oldTips.forEach(t => t.remove());
-
-      const tip = document.createElement('div');
-      tip.className = 'guide-tip';
-      tip.textContent = '👆 ' + step.tip;
-      tip.style.cursor = 'pointer';
-      tip.addEventListener('click', () => this.next());
-      this.chatScreen.appendChild(tip);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => tip.classList.add('shown'));
-      });
+    // AIバブルのchoicesチップ
+    if (step.type === 'ai' && step.choices && step.choices.length > 0) {
+      setTimeout(() => this._showChoiceChips(step.choices), 400);
     }
 
-    // 最後のステップの手前でボタンラベルを変更
-    const nextStep = this.steps[index + 1];
-    if (nextStep && nextStep.type === 'end') {
-      this.nextBtn.textContent = '終了 ✓';
-    }
-
+    if (this.inputArea) this.inputArea.style.display = 'block';
     this.chatScreen.scrollTop = this.chatScreen.scrollHeight;
   }
 
-  _showChips(chips) {
-    // 古いチップエリアを削除
+  // AIバブル下に表示する選択肢チップ
+  _showChoiceChips(choices) {
+    const wrap = document.createElement('div');
+    wrap.className = 'choice-chips-wrap';
+    wrap.style.opacity = '0';
+    wrap.style.transition = 'opacity 0.3s';
+
+    choices.forEach(text => {
+      const chip = document.createElement('button');
+      chip.className = 'ai-choice-chip';
+      chip.textContent = '・' + text;
+      chip.addEventListener('click', () => {
+        // トグル選択
+        chip.classList.toggle('selected');
+        if (this.chatInput) {
+          // 選択中のチップを入力欄に反映
+          const selected = Array.from(wrap.querySelectorAll('.ai-choice-chip.selected'))
+            .map(c => c.textContent.replace(/^・/, '').trim());
+          this.chatInput.value = selected.join('、');
+          this.chatInput.focus();
+        }
+      });
+      wrap.appendChild(chip);
+    });
+
+    this.chatScreen.appendChild(wrap);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        wrap.style.opacity = '1';
+        this.chatScreen.scrollTop = this.chatScreen.scrollHeight;
+      });
+    });
+  }
+
+  // 最初のQUICK STARTチップス
+  _showStartChips(chips) {
     const oldArea = this.chatScreen.querySelector('.quick-start-area');
     if (oldArea) oldArea.remove();
 
@@ -112,28 +166,14 @@ class DemoEngine {
       chip.className = 'qs-chip';
       chip.textContent = text;
       chip.addEventListener('click', () => {
-        // タップアニメーション
         chip.classList.add('tapped');
-        // チップエリアをフェードアウト
         area.style.transition = 'opacity 0.3s';
         area.style.opacity = '0';
 
         setTimeout(() => {
           area.remove();
-          // ユーザーバブルとして表示
-          const row = document.createElement('div');
-          row.className = 'bubble-row user';
-          const bubble = document.createElement('div');
-          bubble.className = 'bubble user';
-          bubble.textContent = text;
-          row.appendChild(bubble);
-          this.chatScreen.appendChild(row);
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => row.classList.add('shown'));
-          });
-          this.chatScreen.scrollTop = this.chatScreen.scrollHeight;
+          this._addBubble('user', text);
 
-          // 700ms後にAIの返答へ進む
           setTimeout(() => {
             this.current++;
             if (this.current < this.steps.length) {
